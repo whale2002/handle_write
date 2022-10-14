@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="./throttle-v1.js"></script> -->
+    <!-- <script src="./throttle-v2.js"></script> -->
+    <script src="./throttle-v3.js"></script>
+  </head>
+  <body>
+    <input type="text" />
+  </body>
+  <script>
+    const inputDom = document.querySelector('input')
+
+    function handleInput(event) {
+      console.log(this, event)
+    }
+    const throttleFn = throttle(handleInput, 2000, {
+      leading: false,
+      trailing: true
+    })
+
+    // inputDom.oninput = handleInput
+    inputDom.oninput = throttleFn
+  </script>
+</html>

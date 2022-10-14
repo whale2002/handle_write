@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+  </body>
+  <!-- <script src="./debounce-v1.js"></script> -->
+  <!-- <script src="./debounce-v2.js"></script> -->
+  <!-- <script src="./debounce-v3.js"></script> -->
+  <script src="./debounce-v4.js"></script>
+  <script>
+    const inputDom = document.querySelector('input')
+
+    function handleInput(event) {
+      console.log(this, event)
+    }
+    const debounceFn = debounce(handleInput, 2000, true)
+
+    // inputDom.oninput = handleInput
+    inputDom.oninput = debounceFn
+  </script>
+</html>
