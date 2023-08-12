@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const domtree = {
+        tag: "div",
+        props: {
+          id: "myDiv",
+          class: "container",
+        },
+        children: [
+          "Hello,",
+          {
+            tag: "span",
+            props: {
+              style: "color: blue;",
+            },
+            children: ["World!"],
+          },
+        ],
+      };
+
+      function json2dom(vdom) {
+        if (typeof vdom === "string") return document.createTextNode(vdom);
+
+        const dom = document.createElement(vdom.tag);
+
+        if (vdom.props) {
+          Object.keys(vdom.props).forEach((key) => {
+            const value = vdom.props[key];
+            dom.setAttribute(key, value);
+          });
+        }
+
+        if (vdom.children) {
+          vdom.children.forEach((item) => {
+            dom.appendChild(json2dom(item));
+          });
+        }
+
+        return dom;
+      }
+
+      // 创建真实的DOM节点
+      const realDOM = json2dom(domtree);
+
+      // 将DOM节点添加到页面中
+      document.body.appendChild(realDOM);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    实现九宫格，flex、grid、float
+    <div class="outer">
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+    </div>
+  </body>
+  <style>
+    .outer {
+      display: grid;
+      grid-template-columns: 30% 30% 30%;
+      grid-template-rows: 30% 30% 30%;
+      grid-gap: 5%;
+      width: 600px;
+      height: 600px;
+    }
+    .inner {
+      border: 1px solid #111;
+    }
+  </style>
+</html>

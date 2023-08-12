@@ -1,0 +1,45 @@
+<div id="app">
+  <span>
+    <a></a>
+  </span>
+  <span>
+    <a demo="123"></a>
+    <a></a>
+  </span>
+</div>
+<script>
+  const node = document.getElementById('app')
+  const res = dom2json(node)
+  console.log(res)
+
+  function dom2json(node) {
+    const vnode = {}
+
+    // 处理标签名
+    vnode.tag = node.tagName
+
+    // 处理属性
+    if (node.attributes?.length > 0) {
+      vnode.props = {}
+      for (const attr of node.attributes) {
+        vnode.props[attr.name] = attr.value
+      }
+    }
+
+    // 处理子节点
+    const childNodes = Array.from(node.childNodes)
+    const filteredChildNodes = childNodes.filter((childNode) => {
+      return (
+        childNode.nodeType === 1 || // 元素节点
+        (childNode.nodeType === 3 && childNode.textContent.trim() !== '') // 非空白文本节点
+      )
+    })
+    if (filteredChildNodes.length > 0) {
+      vnode.children = filteredChildNodes.map((childNode) => {
+        return dom2json(childNode)
+      })
+    }
+
+    return vnode
+  }
+</script>

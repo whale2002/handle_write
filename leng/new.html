@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>new 关键字</h1>
+  </body>
+  <script>
+    function Book(book) {
+      this.book = book
+    }
+
+    const _new = function (fn, ...args) {
+      // 补全代码
+      const obj = {}
+      obj.__proto__ = fn.prototype
+
+      const res = fn.apply(obj, args)
+
+      return typeof res === 'object' && res !== null ? res : obj
+    }
+
+    const book = _new(Book, 'qhy')
+    console.log(book)
+  </script>
+</html>
