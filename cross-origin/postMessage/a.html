@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A页面</title>
+  </head>
+  <body>
+    <h1>a页面</h1>
+    <iframe
+      src="http://localhost:3000/postMessage/b"
+      frameborder="0"
+      onload="load()"
+      id="frame"
+    ></iframe>
+
+    <script>
+      function load() {
+        console.log('执行load')
+        let frame = document.querySelector('#frame')
+        frame.contentWindow.postMessage(
+          'hello',
+          'http://localhost:3000/postMessage/b'
+        )
+
+        window.onmessage = function (e) {
+          console.log(e.data)
+        }
+      }
+    </script>
+  </body>
+</html>

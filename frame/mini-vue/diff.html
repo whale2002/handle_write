@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <script src="./renderer.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // 实现了diff
+      function printLog(message) {
+        console.log(message)
+      }
+
+      const vnode = h('div', { class: 'container' }, [
+        h('h2', { class: 'h2' }, 'Hello World'),
+        h('p', { onClick: function() { printLog('点击了原来的mini-vue') }}, 'This is a mini-vue project.')
+      ])
+      
+      mount(vnode, document.querySelector('#root'))
+
+      setTimeout(() => {
+        const vnode1 = h('div', { class: 'container' }, [
+          h('h2', { class: 'h2' }, 'Hello QHY'),
+          h('h2', { class: 'h2' }, 'Hello WJW'),
+          h('p', { onClick: function() { printLog('点击了后来的mini-vue') }}, 'This is a mini-vue project.')
+        ])
+
+        patch(vnode, vnode1)
+      }, 2000)
+    </script>
+  </body>
+</html>

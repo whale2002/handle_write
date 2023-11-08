@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,31 +7,19 @@
     <title>Document</title>
   </head>
   <body>
-    类型机制
-  </body>
-  <script>
-    Promise.resolve()
-      .then(() => {
-        console.log(0)
-        return Promise.resolve(4)
-      })
-      .then((res) => console.log(res))
+    <!-- <script src="./寄生组合式继承.js"></script> -->
+    <!-- <script src="./promise.js"></script> -->
+    <!-- <script src="./import.js" type="module"></script> -->
+    <!-- <script src="./并发请求限制.js"></script> -->
 
-    Promise.resolve()
-      .then(() => {
-        console.log(1)
-      })
-      .then(() => {
-        console.log(2)
-      })
-      .then(() => {
-        console.log(3)
-      })
-      .then(() => {
-        console.log(5)
-      })
-      .then(() => {
-        console.log(6)
-      })
-  </script>
+    <style>
+      .box {
+        width: 100px;
+        height: 50px;
+        background-color: tomato;
+      }
+    </style>
+    <div class="box"></div>
+    <script src="./requestAnimationFrame.js"></script>
+  </body>
 </html>

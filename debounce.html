@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="btn" />
+    <script>
+      const btn = document.querySelector('#btn')
+
+      function debounce(fn, delay) {
+        let timer
+        function _debounce(...args) {
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => {
+            fn.apply(this, args)
+          }, 200)
+        }
+        return _debounce
+      }
+      function throttle(fn, delay) {
+        let timer
+        function _throttle(...args) {
+          if (timer) return
+          timer = setTimeout(() => {
+            fn.apply(this, args)
+            timer = null
+          }, delay)
+        }
+        return _throttle
+      }
+
+      function handleClick(e) {
+        console.log(e.target.value)
+      }
+
+      const debounceHandleClick = debounce(handleClick, 200)
+      const throttleHandleClick = throttle(handleClick, 200)
+      // btn.addEventListener('input', debounceHandleClick)
+      btn.addEventListener('input', throttleHandleClick)
+    </script>
+  </body>
+</html>
